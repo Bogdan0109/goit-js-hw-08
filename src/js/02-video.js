@@ -4,37 +4,19 @@ import Player from '@vimeo/player';
 const iframe = document.querySelector('#vimeo-player');
 const iframePlayer = new Player(iframe);
 const LOCALSTORAGE_KEY = 'videoplayer-current-time';
+let theme = localStorage.getItem(LOCALSTORAGE_KEY);
 
-iframePlayer.on('play', function () {
-  console.log('played the video!');
-});
-
-const onPlay = function (data) {
-  data: {
+iframePlayer.on('timeupdate', function (data) {
+  {
     duration: 61.857;
     percent: 0.049;
     seconds: 3.034;
   }
-};
-
-iframePlayer.on('play', onPlay);
-
-iframePlayer.off('play', onPlay);
-
-localStorage.setItem(LOCALSTORAGE_KEY, iframePlayer.getCurrentTime());
-console.log(iframePlayer.getCurrentTime());
+  localStorage.setItem(LOCALSTORAGE_KEY, data.seconds);
+});
 
 iframePlayer
-  .setCurrentTime(
-    iframePlayer
-      .getCurrentTime()
-      .then(function (seconds) {
-        // seconds = the current playback position
-      })
-      .catch(function (error) {
-        // an error occurred
-      })
-  )
+  .setCurrentTime(theme)
   .then(function (seconds) {
     // seconds = the actual time that the player seeked to
   })
@@ -49,24 +31,3 @@ iframePlayer
         break;
     }
   });
-
-// console.log(
-//   iframePlayer
-//     .getDuration()
-//     .then(value => {
-//       duration = value;
-//     })
-//     .then(() => {
-//       iframePlayer
-//         .getCurrentTime()
-//         .then(value => {
-//           seconds = value;
-//         })
-//         .then(() => {
-//           this.trackVideoAction('pause', {
-//             duration,
-//             seconds,
-//           });
-//         });
-//     })
-// );
