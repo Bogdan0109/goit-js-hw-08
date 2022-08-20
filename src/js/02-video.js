@@ -21,10 +21,8 @@ iframePlayer.on('play', onPlay);
 
 iframePlayer.off('play', onPlay);
 
-let localstorage = localStorage.setItem(
-  LOCALSTORAGE_KEY,
-  iframePlayer.getCurrentTime()
-);
+localStorage.setItem(LOCALSTORAGE_KEY, iframePlayer.getCurrentTime());
+console.log(iframePlayer.getCurrentTime());
 
 iframePlayer
   .setCurrentTime(
@@ -51,3 +49,24 @@ iframePlayer
         break;
     }
   });
+
+// console.log(
+//   iframePlayer
+//     .getDuration()
+//     .then(value => {
+//       duration = value;
+//     })
+//     .then(() => {
+//       iframePlayer
+//         .getCurrentTime()
+//         .then(value => {
+//           seconds = value;
+//         })
+//         .then(() => {
+//           this.trackVideoAction('pause', {
+//             duration,
+//             seconds,
+//           });
+//         });
+//     })
+// );
