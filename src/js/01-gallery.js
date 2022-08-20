@@ -1,13 +1,6 @@
-// Add imports above this line
 import { galleryItems } from './gallery-items';
-// Change code below this line
-
-// Описан в документации
 import SimpleLightbox from 'simplelightbox';
-// Дополнительный импорт стилей
 import 'simplelightbox/dist/simple-lightbox.min.css';
-
-console.log(galleryItems);
 
 const gallery = document.querySelector('div.gallery');
 
@@ -25,6 +18,7 @@ gallery.insertAdjacentHTML('beforeend', photos);
 let gallerySimpleLightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
 });
+
 gallerySimpleLightbox.on('show.simplelightbox', function () {
   gallerySimpleLightbox.addEventListener('keydown', evt => {
     if (evt.code === 'Escape') {
