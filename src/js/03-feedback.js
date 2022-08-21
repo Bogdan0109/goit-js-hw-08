@@ -17,13 +17,12 @@ function onHandlerInput(evt) {
   user[evt.target.name] = evt.target.value;
 
   const userString = JSON.stringify(user);
-  console.log(userString);
-
   localStorage.setItem(LOCALSTORAGE_KEY, `${userString}`);
 }
 
 function updateInput() {
   let getItemLocalStorage = localStorage.getItem(LOCALSTORAGE_KEY);
+  if (!getItemLocalStorage) return;
 
   let parseItemLocalStorage = JSON.parse(getItemLocalStorage);
 

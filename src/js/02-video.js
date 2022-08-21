@@ -13,4 +13,4 @@ iframePlayer.on(
   }, 1000)
 );
 
-iframePlayer.setCurrentTime(theme);
+iframePlayer.setCurrentTime(localStorage.length !== 0 ? theme : 0);
