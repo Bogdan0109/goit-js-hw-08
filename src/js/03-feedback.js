@@ -3,7 +3,6 @@ const form = document.querySelector('.feedback-form');
 const emailInput = document.querySelector(`input[name="email"]`);
 const messageInput = document.querySelector(`textarea[name="message"]`);
 const LOCALSTORAGE_KEY = 'feedback-form-state';
-let user = {};
 
 updateInput();
 
