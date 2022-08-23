@@ -1,6 +1,5 @@
 const throttle = require('lodash.throttle');
 const form = document.querySelector('.feedback-form');
-const button = document.querySelector('button[type=submit]');
 const emailInput = document.querySelector(`input[name="email"]`);
 const messageInput = document.querySelector(`textarea[name="message"]`);
 const LOCALSTORAGE_KEY = 'feedback-form-state';
@@ -13,8 +12,11 @@ form.addEventListener('submit', onHandlerSubmit);
 
 function onHandlerInput(evt) {
   evt.preventDefault();
-
-  user[evt.target.name] = evt.target.value;
+  const user = {
+    email: evt.currentTarget.email.value,
+    message: evt.currentTarget.message.value,
+  };
+  //   user[evt.target.name] = evt.target.value;
 
   const userString = JSON.stringify(user);
   localStorage.setItem(LOCALSTORAGE_KEY, `${userString}`);
@@ -36,6 +38,11 @@ function onHandlerSubmit(evt) {
   if (emailInput.value === '' || messageInput.value === '') {
     return alert('Все поля должны быть заполнены');
   }
+
+  const user = {
+    email: evt.currentTarget.email.value,
+    message: evt.currentTarget.message.value,
+  };
 
   console.log(user);
 
