@@ -6,16 +6,15 @@ const LOCALSTORAGE_KEY = 'feedback-form-state';
 
 updateInput();
 
-form.addEventListener('input', throttle(onHandlerInput, 500));
+form.addEventListener('input', onHandlerInput);
 form.addEventListener('submit', onHandlerSubmit);
 
 function onHandlerInput(evt) {
   evt.preventDefault();
   const user = {
-    email: evt.currentTarget.email.value,
-    message: evt.currentTarget.message.value,
+    email: form.email.value,
+    message: form.message.value,
   };
-  //   user[evt.target.name] = evt.target.value;
 
   const userString = JSON.stringify(user);
   localStorage.setItem(LOCALSTORAGE_KEY, `${userString}`);
